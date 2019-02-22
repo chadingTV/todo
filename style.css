@@ -1,0 +1,352 @@
+*{
+    box-sizing:border-box;
+}
+
+html,body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    /* background: linear-gradient(#f9a754,#f05d70); */
+    color: #FFF;
+    overflow: hidden;
+}
+
+
+
+header {
+    padding: 20px;
+    display: flex;
+}
+
+header > div {
+    flex: auto;
+}
+
+header .left {
+    text-align: left;
+}
+
+header .title {
+    text-align: center;
+}
+
+header .right {
+    text-align: right;
+}
+
+.contents {
+    padding: 40px;
+    padding-bottom: 10px;
+}
+
+.contents .my-image {
+    background: #FFF;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    box-shadow: 0 7px 10px 2px rgba(0,0,0,0.3);
+    background-image: url('https://0.soompi.io/wp-content/uploads/2018/03/20004239/IU3.jpg?s=900x600&e=t');
+    background-size: 100px;
+    background-position-x: -18px;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+p {
+    margin: 0;
+}
+
+.contents p {
+    opacity: 0.5;
+}
+
+.contents p.today {
+    font-size: 12px;
+    opacity: 1;
+    margin-top: 45px;
+}
+
+.card-area {
+    /* background: rgba(0,0,0,0.2); */
+    height: calc(100% - 345px);
+    padding: 0 40px 50px;
+    display: flex;
+    /* overflow: auto; */
+    width: 100%;
+    transition: margin 300ms cubic-bezier(0.68, 0.01, 0.28, 0.99);
+}
+
+.card {
+    /* background: rgba(0,0,0,0.2); */
+    height: 100%;
+    width: 100%;
+    /* background: #FFF; */
+    flex: none;
+    margin-right: 20px;
+    /* transition: all 250ms linear; */
+}
+
+.card .inner {
+    background: #FFF;
+    height: 100%;
+    color: #AAA;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px 5px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.card-icon {
+    border: 1px solid #DDD;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    color: #f58561;
+    float: left;
+}
+
+.btn-setting {
+    float: right;
+}
+
+.card .bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    height: 140px;
+    padding: 20px;
+}
+
+.card h2 {
+    margin-top: 10px;
+    color: #5a5a5a;
+}
+
+.card span.per {
+    float: right;
+    font-size: 12px;
+    margin-top: -10px;
+}
+
+.card span.per::after {
+    content: '%';
+}
+
+.track {
+    background: #EEE;
+    height: 4px;
+    width: calc(100% - 30px);
+}
+
+.status .bar {
+    height: 4px;
+    background: linear-gradient(to left,#f9a754,#f05d70);
+}
+
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#f9a754,#f05d70);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 300ms cubic-bezier(0.75, 0, 0.32, 0.99);
+}
+
+.background:nth-child(1) {
+    opacity:1;
+}
+.background:nth-child(2) {
+    /* opacity:1; */
+    background: linear-gradient(#63ade7,#5263e6);
+}
+.background:nth-child(3) {
+    /* opacity:1; */
+    background: linear-gradient(#8BC34A,#009688);
+}
+
+.card:nth-child(2) .card-icon{color: #5b8ce6;}
+.card:nth-child(2) .status .bar{background: linear-gradient(to left,#63ade7,#5263e6);}
+.card:nth-child(3) .card-icon{
+    color: #4daf66;
+}
+.card:nth-child(3) .status .bar{
+    background: linear-gradient(to left,#8BC34A,#009688);
+}
+
+
+.page2 .background:nth-child(2) {
+    opacity:1;
+}
+.page3 .background:nth-child(3) {
+    opacity:1;
+}
+
+.page2 .card-area{
+    margin-left: calc(-100% + 60px);
+}
+.page3 .card-area{
+    margin-left: calc(-200% + 120px);
+}
+
+.card.active .inner {
+    position: fixed;
+    top: 343px;
+    left: 40px;
+    width: calc(100% - 80px);
+    height: calc(100% - 394px);
+    z-index: 10;
+}
+
+.card.active.open .inner {
+    padding: 100px 50px;
+    border-radius: 0;
+    transition: all 250ms ease-in-out;
+    animation-name: ani-card-open;
+    animation-duration: 250ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes ani-card-open{
+    to{
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.card.open.active .btn-setting {
+    opacity: 0;
+}
+
+.card.active .btn-setting {
+    transition: opacity 250ms;
+}
+.card.active .bottom {
+    transition: padding 250ms linear,height 250ms ease-in-out 50ms;
+    /* height: 140px; */
+}
+.card.active.open .bottom {
+    height: calc(100% - 120px);
+    padding: 50px;
+}
+
+header.detail {
+    position: absolute;
+    width: 100%;
+    top: -59px;
+    color: #999;
+    z-index: 11;
+}
+
+.card-open header.detail {
+    transform: translateY(100%);
+    transition: transform 200ms linear 100ms;
+}
+
+.card .list {
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.card .list ul {
+    margin-bottom: 15px;
+}
+.card .list li {
+    color: #666;
+    border-bottom: 1px solid #EEE;
+    line-height: 40px;
+}
+.card .list li:last-child{
+    border-bottom:0;
+}
+.card .list li::before{
+    content:'\f0c8';
+    margin-right:18px;
+    font-family: "Font Awesome 5 Free";
+    color:#DDD;
+}
+.card .list li.check{
+    color:#CCC;
+    text-decoration:line-through;
+}
+.card .list li.check::before{
+    content:'\f14a';
+    font-weight:900;
+    text-decoration:none;
+}
+
+.card .list p {
+    font-size: 12px;
+    line-height: 40px;
+}
+
+.btn-floating {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    bottom: 80px;
+    right: 30px;
+    background: #AAA;
+    z-index: 11;
+    border-radius: 100%;
+    box-shadow: 0 10px 10px 0px rgba(0,0,0,0.2);
+    background: linear-gradient(223deg,#f9a754,#f05d70);
+    line-height: 40px;
+    opacity:0;
+    transform:scale(0);
+    transition:250ms linear;
+    transition-delay:0;
+}
+
+.btn-floating span {
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: #EEE;
+}
+.btn-floating span::before{
+    content:'';
+    display:inline-block;
+    width:1px;
+    height:20px;
+    background:#EEE;
+    position:absolute;
+    margin-top: -9px;
+}
+
+.card-open .btn-floating{
+    opacity:1;
+    transform:scale(1);
+    transition-delay:200ms;
+}
+
+
+.page2 .btn-floating {
+    background: linear-gradient(223deg,#63ade7,#5263e6);
+}
+.page3 .btn-floating {
+    background: linear-gradient(223deg,#8BC34A,#009688);
+}
